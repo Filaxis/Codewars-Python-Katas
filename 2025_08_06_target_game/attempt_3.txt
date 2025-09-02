@@ -1,0 +1,40 @@
+def shootTargets(values):
+
+    def testShoot(slice):
+        max = 0
+        nextSum = 0
+        for i in range(len(slice)):
+            for j in range(i,len(slice),2):
+                if slice[j] >= 0:
+                    nextSum = nextSum + slice[j]
+            if nextSum > max:
+                max = nextSum
+                nextSum = 0
+            else:
+                nextSum = 0
+        return max
+    
+    evenSum = 0
+    oddSum = 0
+    totalSum = 0
+    stepCounter = 0
+    for k in range(len(values)):
+        # print('k = ' + str(k))
+        if stepCounter > 0:
+            stepCounter = stepCounter - 1
+            continue
+        evenSum = testShoot(values[k:len(values)])
+        oddSum = testShoot(values[k+1:len(values)])
+        print('even range is ' + str(values[k:len(values)]))
+        print('odd range is ' + str(values[k+1:len(values)]))
+        print('evenSum = ' + str(evenSum))
+        print('oddSum = ' + str(oddSum))
+        if evenSum >= oddSum:
+            totalSum = totalSum + values[k]
+            stepCounter = stepCounter + 1
+        else:
+            totalSum = totalSum + values[k+1]
+            stepCounter = stepCounter + 2
+        print(str(totalSum))
+        print('stepCounter = ' + str(stepCounter))
+    return totalSum

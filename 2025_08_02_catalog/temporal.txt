@@ -1,0 +1,24 @@
+def catalog(inputCatalog, product):
+    import re
+    import copy
+    searchedProduct = re.compile(str(product))
+    #print(searchedProduct)
+    output = ''
+    catalogLines = inputCatalog.split('\n\n')
+    #print(catalogLines)
+    searchResults = copy.copy(catalogLines) 
+    for line in catalogLines:
+        if searchedProduct.search(line) != None:
+            print(line)
+            ware = re.compile(r'\<prod\>\<name\>: (.*) \<\/name\>').search(line)
+            print(ware)
+            price = re.compile(r'<prx>:(.*)</prx>').search(line)
+            quantity = re.compile(r'<qty>:(.*)</qty>').search(line)
+            # output = output + ware.group() + ' > prx: $'
+            # + price.group() + ' qty: '
+            # + quantity.group() + '\n'
+            #print(searchedProduct.search(line).group())
+            print(output)
+        # else:
+        #     print('Not found.')
+    return

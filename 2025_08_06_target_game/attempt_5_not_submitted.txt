@@ -1,0 +1,35 @@
+def shootTargets(values):
+
+    def singleShot(slice):
+        sum = 0
+        for i in range(0,len(slice),2):
+            if slice[i] >= 0:
+                sum = sum + slice[i]
+        # print('The result of the ' + str(i) + '-th iteration is ' + str(sum))
+        return sum
+    
+    partialSum = 0
+    singleSet = []
+    masterSet = []
+
+    for j in range(len(values)):
+        if j % 2 == 0:
+            for l in range(0,j,2):
+                partialSum = partialSum + values[l]
+            print('The even partial sum is ' + str(partialSum))
+        else:
+            for m in range(1,j,2):
+                partialSum = partialSum + values[m]
+            print('The odd partial sum is ' + str(partialSum))            
+        for k in range(j+2,len(values)):
+            if k < len(values) - 1:
+                bang = singleShot(values[k:len(values)])
+                singleSet.append(partialSum + bang)
+                # print('Iteration number ' + str(k) + ', restarray is ' + str(values[k:len(values)]))
+        # print('Current max is ' + str(max(singleSet)))
+        masterSet.append(max(singleSet))
+        partialSum = 0
+        # singleSet = [0]
+    # print(masterSet)
+    # print('The maximum is ' + str(max(masterSet)))
+    return max(masterSet)

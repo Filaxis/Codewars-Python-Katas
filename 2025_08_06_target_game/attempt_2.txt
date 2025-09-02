@@ -1,0 +1,29 @@
+def shootTargets(vals):
+    currentMax = 0
+    nextSum = 0
+    evenSum = 0
+    oddSum = 0
+    for i in range(len(vals)):
+        for j in range(i,len(vals),2):
+            if vals[j] > 0:
+                oddSum = oddSum + vals[j]
+                #print(oddSum)
+        for k in range(i+1,len(vals),2):
+            if vals[k] > 0:
+                evenSum = evenSum + vals[k]
+                #print(evenSum)
+        if oddSum >= evenSum:
+            nextSum = nextSum + vals[i]
+        elif evenSum > oddSum:
+            nextSum = nextSum + vals[i+1]
+            i = i + 1
+        oddSum = 0
+        evenSum = 0
+        if nextSum > currentMax:
+            currentMax = nextSum
+        #     nextSum = 0
+            print('current max is ' + str(currentMax))
+        # else:
+        #     nextSum = 0
+    print(currentMax)
+    return currentMax

@@ -1,0 +1,13 @@
+def target_game(vals):
+    currentMax = 0
+    nextSum = 0
+    for i in range(len(vals)):
+        for j in range(i,len(vals),2):
+            if vals[j] >= 0:
+                nextSum = nextSum + vals[j]
+        if nextSum > currentMax:
+            currentMax = nextSum
+            nextSum = 0
+        else:
+            nextSum = 0
+    return currentMax
